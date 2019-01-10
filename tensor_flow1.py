@@ -2,7 +2,7 @@
 # need tensorflow version 1.10 or greater
 import tensorflow as tf
 # import matplotlib for visualisation
-
+import matplotlib.pyplot as plt
 
 print(tf.__version__)
 
