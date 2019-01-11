@@ -21,5 +21,14 @@ mnist = tf.keras.datasets.mnist  # 28x28 images of hand written digits 0-9
 # the data is given in a form of tensors - multidimensional array - here is an example of first entry
 print(x_train[0])
 # to see the actual picture - run the same entry against a imshow from pyplot library
-plt.imshow(x_train[0], cmap=plt.cm.binary)
-plt.show()
+plt.imshow(x_train[0], cmap=plt.cm.binary)  # use a binary color map for the picture
+plt.show()  # show the picture
+# once the dataset has been obtained it's good to normalize it (or at leas scale)
+# the dataset loaded varies between 0 and 255 so to make them scale between 0 and 1 we use a keras normalize function
+x_train = tf.keras.utils.normalize(x_train, axis=1)
+x_test = tf.keras.utils.normalize(x_test, axis=1)
+# print again the image, see that it is slightly lighter
+print(x_train[0])
+plt.imshow(x_train[0], cmap=plt.cm.binary)  # use a binary color map for the picture
+plt.show()  # show the picture
+# the reason for normalization is that ML models work better with numbers below 1
