@@ -32,3 +32,4 @@ print(x_train[0])
 plt.imshow(x_train[0], cmap=plt.cm.binary)  # use a binary color map for the picture
 plt.show()  # show the picture
 # the reason for normalization is that ML models work better with numbers below 1
+# todo: finished in part1 9:53
