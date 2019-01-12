@@ -18,7 +18,7 @@ saved_model = tf.keras.models.load_model("simple_num_reader.model")
 test_predictions = saved_model.predict([x_test])
 # use numpy to get a single case from predictions and run it against the picture itself (using matplotlib)
 # show image
-plt.imshow(x_test[12])
+plt.imshow(x_test[15])
 plt.show()
 # check prediction
-print(np.argmax(test_predictions[12]))
+print(np.argmax(test_predictions[15]))
