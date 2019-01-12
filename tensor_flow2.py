@@ -10,9 +10,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 import cv2
+import random
 
 # create a path to directory where we have data
-DATADIR = "D:\Projects\Python\SDDeepLearning_Datasets\kagglecatsanddogs_3367a\PetImages"
+DATADIR = "D:\Projects\Python\SDDeepLearning_Datasets"
 # set categories
 CATEGORIES = ["Dog", "Cat"]
 # iterate through all examples of dog and cat
@@ -62,3 +63,9 @@ def create_training_data():
 create_training_data()
 # printout the length of training data
 print(len(training_data))
+# the results printout that there are 57 images that are corrupted but it still end without error and saves
+# over 24900 images
+# since the images area read from 2 different directories it would have all half cats and next one dogs (bad for model
+# to learn it) so we have to shuffle data
+random.shuffle(training_data)
+# todo: ended in 12:58
