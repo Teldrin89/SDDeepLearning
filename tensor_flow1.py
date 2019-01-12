@@ -32,4 +32,19 @@ print(x_train[0])
 plt.imshow(x_train[0], cmap=plt.cm.binary)  # use a binary color map for the picture
 plt.show()  # show the picture
 # the reason for normalization is that ML models work better with numbers below 1
-# todo: finished in part1 9:53
+# build the model - sequential type (most common, feed forward model)
+model = tf.keras.models.Sequential()
+# the data normalized is still a multidimensional array and in order to use a sequential model dat has to be flattened
+# for other models (eg. convolutional) this wouldn't be needed
+# to flatten data we can either use some additional functions from numpy or use a flatten function from keras
+# add a input layer with flatten data
+model.add(tf.keras.layers.Flatten())
+# add a 2nd layer (hidden) - first one with neurons - it will be a dense layer with set number of units (128 neurons)
+# and activation function set up to rectified linear function (default option)
+model.add(tf.keras.layers.Dense(128, activation=tf.nn.relu))
+# add a 3rd layer - second hidden layer, the same as previous one
+model.add(tf.keras.layers.Dense(128, activation=tf.nn.relu))
+# add last layer - the output one - it will have 10 output possibilities (digits 0-9) and the activation function
+# will be a shape of probability distribution
+model.add(tf.keras.layers.Dense(10, activation=tf.nn.softmax))
+# todo: finished @12:43
