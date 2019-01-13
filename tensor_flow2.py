@@ -72,7 +72,7 @@ random.shuffle(training_data)
 # check if the shuffle worked
 for sample in training_data[:10]:
     print(sample[1])
-    break
+    # break
 # shuffled data will be packed inside the variables: x (input data - feature set) and y (output - categories)
 # create empty lists
 X = []
