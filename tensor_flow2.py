@@ -11,6 +11,7 @@ import matplotlib.pyplot as plt
 import os
 import cv2
 import random
+import pickle
 
 # create a path to directory where we have data
 DATADIR = "D:\Projects\Python\SDDeepLearning_Datasets"
@@ -69,6 +70,39 @@ print(len(training_data))
 # to learn it) so we have to shuffle data
 random.shuffle(training_data)
 # check if the shuffle worked
-for sample in training_data:
+for sample in training_data[:10]:
     print(sample[1])
     break
+# shuffled data will be packed inside the variables: x (input data - feature set) and y (output - categories)
+# create empty lists
+X = []
+y = []
+# run a for for loop to fill out X and y
+for features, labels in training_data:
+    X.append(features)
+    y.append(labels)
+
+# for neural network the X has to be converted from list to numpy array (first) and also reshape to be
+# "-1"- how many features (in this case "-1" means no specific value), then image size (2 times as this is a 2
+# dimensional array) and then 1 (as it is gray scale only, in case of for example different colors we'd have 3 -
+# for RGB color scale)
+X = np.array(X).reshape(-1, IMG_SIZE, IMG_SIZE, 1)
+
+# to save dataset - reshaped array for X and list for y - we can use pickle library
+# create a pickle file
+pickle_out = open("X.pickle", "wb")
+# save dataset to opened pickle file
+pickle.dump(X, pickle_out)
+# close pickle file
+pickle_out.close()
+# the same script for y dataset
+pickle_out = open("y.pickle", "wb")
+pickle.dump(y, pickle_out)
+pickle_out.close()
+
+# to open saved pickle
+pickle_in = open("X.pickle", "rb")
+# load data to X array
+X = pickle.load(pickle_in)
+# check entry 1
+print(X[1])
