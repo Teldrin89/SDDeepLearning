@@ -68,4 +68,7 @@ print(len(training_data))
 # since the images area read from 2 different directories it would have all half cats and next one dogs (bad for model
 # to learn it) so we have to shuffle data
 random.shuffle(training_data)
-# todo: ended in 12:58
+# check if the shuffle worked
+for sample in training_data:
+    print(sample[1])
+    break
