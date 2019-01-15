@@ -23,11 +23,11 @@ model.add(Conv2D(64, (3, 3), input_shape=X.shape[1:]))
 # activation -> pooling)
 model.add(Activation("relu"))
 # last part for 1st hidden layer is max-pooling layer with pool size of 2x2
-model.add(MaxPooling2D(pool_size=(2,2)))
+model.add(MaxPooling2D(pool_size=(2, 2)))
 # the second layer will look exactly the same as the previous one - this will change the ML model to deep learning
-model.add(Conv2D(64, (3,3), input_shape=X.shape[1:]))
+model.add(Conv2D(64, (3, 3), input_shape=X.shape[1:]))
 model.add(Activation("relu"))
-model.add(MaxPooling2D(pool_size=(2,2)))
+model.add(MaxPooling2D(pool_size=(2, 2)))
 # before passing the last layer, the data will be changed to dense layer - value set 64 as the filter from Conv2D
 # data also has to "flattened" (as the one passing before is a 2D array) to 1D
 model.add(Flatten())
@@ -37,3 +37,11 @@ model.add(Dense(64))
 model.add(Dense(1))
 # add activation to last layer - sigmoid function
 model.add(Activation("sigmoid"))
+# compile model - selecting loss (binary as we have only 2 results possible), optimizer ("adam" as the standard one),
+# and metrics (accuracy of the model)
+model.compile(loss="binary_crossentropy",
+              optimizer="adam",
+              metrics=['accuracy'])
+# run the model fitting - training the actual model - use the X dataset input and y output, with batch size of 32
+# (not to pass all the data at once), run it for 3 iterations and setting up the validation split to 10%
+model.fit(X, y, batch_size=32, epochs=3, validation_split=0.1)
