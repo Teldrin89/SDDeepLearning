@@ -45,3 +45,4 @@ model.compile(loss="binary_crossentropy",
 # run the model fitting - training the actual model - use the X dataset input and y output, with batch size of 32
 # (not to pass all the data at once), run it for 3 iterations and setting up the validation split to 10%
 model.fit(X, y, batch_size=32, epochs=3, validation_split=0.1)
+model.save("simple_cat_dog_selector.model")
