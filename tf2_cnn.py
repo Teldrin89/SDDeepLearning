@@ -9,6 +9,9 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten, Conv2D, MaxPooling2D
 # import pickle to load saved datasets
 import pickle
+# config = tf.ConfigProto()
+# config.gpu_options.per_process_gpu_memory_fraction = 0.4
+# session = tf.Session(config=config)
 # open input (X) and output (y) train datasets
 X = pickle.load(open("X.pickle", "rb"))
 y = pickle.load(open("y.pickle", "rb"))
