@@ -36,6 +36,8 @@ model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Flatten())
 # change data to dense layer with 64 nodes
 model.add(Dense(64))
+# add activation function
+model.add(Activation("relu"))
 # add output layer - also Dense, single node
 model.add(Dense(1))
 # add activation to last layer - sigmoid function
