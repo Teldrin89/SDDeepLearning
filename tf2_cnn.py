@@ -9,6 +9,17 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten, Conv2D, MaxPooling2D
 # import pickle to load saved datasets
 import pickle
+# import tensor board - to save log from training
+from tensorflow.keras.callbacks import TensorBoard
+# import time library
+import time
+
+# it's a good practice to save each model separately as each time we overwrite the model it is not really overwriting
+# but appending
+# put a name of model - use time as additional portion (this way each one is unique)
+NAME = "cats-vs-dogs-cnn-64x2-{}".format(int(time.time()))
+# specify the callback object
+tensorboard = TensorBoard(log_dir="logs/{}".format(NAME))
 # configuring the session to run tensorflow on gpu
 gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.333)
 sess = tf.Session(config=tf.ConfigProto(gpu_options=gpu_options))
@@ -49,5 +60,13 @@ model.compile(loss="binary_crossentropy",
               metrics=['accuracy'])
 # run the model fitting - training the actual model - use the X dataset input and y output, with batch size of 32
 # (not to pass all the data at once), run it for 3 iterations and setting up the validation split to 10%
-model.fit(X, y, batch_size=32, epochs=3, validation_split=0.1)
-model.save("simple_cat_dog_selector.model")
+# add callbacks to model fitment - tensorboard
+model.fit(X, y, batch_size=32, epochs=10, validation_split=0.3, callbacks=[tensorboard])
+model.save("{}.model".format(NAME))
+
+# the next part is to work on the validation of the model training by using a tensor board - this will show how
+# during iterations the model accuracy and loss (in and out of sample) change and based on that how to change the
+# model to get better results
+
+# to run tensorboard and see the results run this in cmd from the folder with model and logs
+# "tensorboard --logdir=logs/" and then use the localhost it provides in chrome "localhost:00000"
