@@ -17,7 +17,7 @@ import time
 # it's a good practice to save each model separately as each time we overwrite the model it is not really overwriting
 # but appending
 # configuring the session to run tensorflow on gpu
-gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.333)
+gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.5)
 sess = tf.Session(config=tf.ConfigProto(gpu_options=gpu_options))
 # open input (X) and output (y) train datasets
 X = pickle.load(open("X.pickle", "rb"))
