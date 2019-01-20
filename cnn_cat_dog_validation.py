@@ -26,6 +26,6 @@ def prepare(filepath):
 model = tf.keras.models.load_model("64x3-CNN.model")
 # run the prediction for selected image - folder inside the project dir
 # predict function always takes a list!
-prediction = model.predict([prepare("SDDeepLearning_Datasets_TEST/0.jpg")])
+prediction = model.predict([prepare("SDDeepLearning_Datasets_TEST/10.jpg")])
 # printout the prediction
 print(CATEGORIES[int(prediction[0][0])])
