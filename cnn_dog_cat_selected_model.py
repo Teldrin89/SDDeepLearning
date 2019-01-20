@@ -12,7 +12,7 @@ import pickle
 import time
 
 # configuring the session to run tensorflow on gpu
-gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.5)
+gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.3)
 sess = tf.Session(config=tf.ConfigProto(gpu_options=gpu_options))
 
 pickle_in = open("X.pickle", "rb")
